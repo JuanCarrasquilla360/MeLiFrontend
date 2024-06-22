@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  color: #333;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+}
+
+form {
+  margin-bottom: 20px;
+
+  input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+  }
+
+  button {
+    padding: 5px 10px;
+  }
+}
+
+.loading {
+  font-size: 18px;
+  color: blue;
+}
+
+.error {
+  font-size: 18px;
+  color: red;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.header {
+  width: 100%;
+  background-color: #ffe600;
+  padding: 10px;
+}
