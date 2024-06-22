@@ -1,18 +1,19 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import { FC } from 'react';
+import { Routes, Route, HashRouter } from 'react-router-dom';
+import Header from './components/Header';
 import ProductDetail from './pages/ProductDetail';
 import SearchResults from './pages/SearchResults';
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
+      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<SearchResults />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/search" element={<SearchResults />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

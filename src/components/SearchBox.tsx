@@ -1,7 +1,7 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import logo from '../assets/mercadolibre_logo.png'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface SearchBoxProps {
     onSearch: (query: string) => void;
@@ -10,22 +10,29 @@ interface SearchBoxProps {
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');
     const navigate = useNavigate()
+    const [searchParams] = useSearchParams();
+    const queryParam = searchParams.get('q') || '';
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onSearch(query);
     };
 
+    useEffect(() => {
+        setQuery(queryParam) 
+    }, [queryParam])
+    
+
     return (
         <form onSubmit={handleSubmit} className='search-field-container'>
-            <img src={logo} alt="" onClick={()=>navigate("/")}/>
+            <img src={logo} alt="" onClick={() => navigate("/")} />
             <input
                 type="text"
                 placeholder="Nunca dejes de buscar"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
-            <button type='submit'><CiSearch size={20}/></button>
+            <button type='submit'><CiSearch size={20} /></button>
         </form>
     );
 }

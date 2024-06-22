@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SearchBox from '../components/SearchBox';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import SearchBox from './SearchBox';
 
-const Home: FC = () => {
-    const navigate = useNavigate()
+const Header: FC = () => {
+    const navigate = useNavigate();
 
     const searchProducts = (query: string) => {
         if (!query) return
@@ -16,4 +16,4 @@ const Home: FC = () => {
     );
 }
 
-export default Home;
+export default Header;
