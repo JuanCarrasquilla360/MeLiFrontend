@@ -1,32 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import axios from 'axios';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import Breadcrumbs from '../components/Breadcrumbs';
+import { Results } from '../interfaces/results';
+import { LuLoader2 } from 'react-icons/lu';
+import SearchResult from '../components/SearchResult';
+import Divider from '../components/Divider';
 
-interface Product {
-    id: string;
-    title: string;
+const initialValues: Results = {
+    author: {
+        name: "",
+        lastname: ""
+    },
+    categories: [],
+    items: []
 }
 
-const SearchResults: React.FC = () => {
+const SearchResults: FC = () => {
     const [searchParams] = useSearchParams();
     const query = searchParams.get('q') || '';
-    const [products, setProducts] = useState<Product[]>([]);
+    const [results, setResults] = useState<Results>(initialValues);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const baseUrl = "http://localhost:3000"
 
     useEffect(() => {
         if (!query) {
-            setProducts([]);
+            setResults(initialValues);
             return
         }
         setLoading(true);
+        setResults(initialValues);
         setError(null);
         axios.get(`${baseUrl}/items`, { params: { q: query } })
             .then(response => {
                 console.log(response);
-
-                setProducts(response.data.items);
+                setResults(response.data);
                 setLoading(false);
             })
             .catch(error => {
@@ -38,17 +47,26 @@ const SearchResults: React.FC = () => {
     }, [query]);
 
     return (
-        <div>
-            <h1>Resultados de búsqueda</h1>
-            {loading && <p>Cargando...</p>}
-            {error && <p>{error}</p>}
-            <ul>
-                {products.map(product => (
-                    <li key={product.id}>
-                        <Link to={`/product/${product.id}`}>{product.title}</Link>
-                    </li>
-                ))}
-            </ul>
+        <div className='ui-result'>
+            <div className='breadcrums-container'>
+                <Breadcrumbs items={results.categories} />
+            </div>
+            <div className='result-container'>
+                {loading && (
+                    <div className="loader">
+                        <LuLoader2 className="loader-icon" />
+                    </div>
+                )}
+                {error && <p>{error}</p>}
+                <ul>
+                    {results.items.map((product, index) => (
+                        <>
+                            <SearchResult key={product.id} product={product} />
+                            {index < results.items.length - 1 && <Divider />}
+                        </>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

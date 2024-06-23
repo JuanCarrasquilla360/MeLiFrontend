@@ -8,11 +8,13 @@ const App: FC = () => {
   return (
     <HashRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<SearchResults />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/search" element={<SearchResults />} />
-      </Routes>
+      <div className='main'>
+        <Routes>
+          <Route path="/" element={<SearchResults />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/search" element={<SearchResults />} />
+        </Routes>
+      </div>
     </HashRouter>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent, useEffect, FC } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import logo from '../assets/mercadolibre_logo.png'
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -7,7 +7,7 @@ interface SearchBoxProps {
     onSearch: (query: string) => void;
 }
 
-const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
+const SearchBox: FC<SearchBoxProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');
     const navigate = useNavigate()
     const [searchParams] = useSearchParams();
@@ -19,9 +19,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     };
 
     useEffect(() => {
-        setQuery(queryParam) 
+        setQuery(queryParam)
     }, [queryParam])
-    
+
 
     return (
         <form onSubmit={handleSubmit} className='search-field-container'>

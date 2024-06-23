@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,7 +9,7 @@ interface Product {
     thumbnail: string;
 }
 
-const ProductDetail: React.FC = () => {
+const ProductDetail: FC = () => {
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(false);
