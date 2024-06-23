@@ -34,7 +34,6 @@ const SearchResults: FC = () => {
         setError(null);
         axios.get(`${baseUrl}/items`, { params: { q: query } })
             .then(response => {
-                console.log(response);
                 setResults(response.data);
                 setLoading(false);
             })
@@ -60,10 +59,10 @@ const SearchResults: FC = () => {
                 {error && <p>{error}</p>}
                 <ul>
                     {results.items.map((product, index) => (
-                        <>
-                            <SearchResult key={product.id} product={product} />
+                        <div key={product.id}>
+                            <SearchResult product={product} />
                             {index < results.items.length - 1 && <Divider />}
-                        </>
+                        </div>
                     ))}
                 </ul>
             </div>
