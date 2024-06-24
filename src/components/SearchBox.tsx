@@ -2,6 +2,7 @@ import { useState, FormEvent, useEffect, FC } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import logo from '../assets/mercadolibre_logo.png'
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface SearchBoxProps {
     onSearch: (query: string) => void;
@@ -12,6 +13,7 @@ const SearchBox: FC<SearchBoxProps> = ({ onSearch }) => {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams();
     const queryParam = searchParams.get('q') || '';
+    const { t } = useTranslation();
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,7 +30,7 @@ const SearchBox: FC<SearchBoxProps> = ({ onSearch }) => {
             <img src={logo} alt="" onClick={() => navigate("/")} />
             <input
                 type="text"
-                placeholder="Nunca dejes de buscar"
+                placeholder={t("search_placeholder")}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />

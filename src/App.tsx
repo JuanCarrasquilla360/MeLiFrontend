@@ -6,16 +6,16 @@ import SearchResults from './pages/SearchResults';
 
 const App: FC = () => {
   return (
-    <HashRouter>
-      <Header />
-      <div className='main'>
-        <Routes>
-          <Route path="/" element={<SearchResults />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/search" element={<SearchResults />} />
-        </Routes>
-      </div>
-    </HashRouter>
+      <HashRouter>
+        <Header />
+        <div className='main'>
+          <Routes>
+            <Route path="/" element={<SearchResults />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/search" element={<SearchResults />} />
+          </Routes>
+        </div>
+      </HashRouter>
   );
 }
 
