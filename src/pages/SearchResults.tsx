@@ -1,5 +1,4 @@
 import { useState, useEffect, FC } from 'react';
-import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { Results } from '../interfaces/results';
@@ -38,7 +37,7 @@ const SearchResults: FC = () => {
                 setResults(response.data);
                 setLoading(false);
             })
-            .catch(error => {
+            .catch(() => {
                 setError('Error al buscar productos');
                 setLoading(false);
             });

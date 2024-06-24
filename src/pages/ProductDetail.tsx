@@ -1,6 +1,5 @@
 import { useState, useEffect, FC } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { ProductDetails } from '../interfaces/details';
 import { useTranslation } from 'react-i18next';
 import ProductDetailComponent from '../components/ProductDetailComponent';
@@ -43,7 +42,7 @@ const ProductDetail: FC = () => {
                 setProduct(response.data);
                 setLoading(false);
             })
-            .catch(error => {
+            .catch(() => {
                 setError(t("error"));
                 setLoading(false);
             });
