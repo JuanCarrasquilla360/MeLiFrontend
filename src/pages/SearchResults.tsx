@@ -6,6 +6,7 @@ import { Results } from '../interfaces/results';
 import { LuLoader2 } from 'react-icons/lu';
 import SearchResult from '../components/SearchResult';
 import Divider from '../components/Divider';
+import useAxios from '../hooks/useAxios';
 
 const initialValues: Results = {
     author: {
@@ -21,8 +22,8 @@ const SearchResults: FC = () => {
     const query = searchParams.get('q') || '';
     const [results, setResults] = useState<Results>(initialValues);
     const [loading, setLoading] = useState(false);
+    const axiosInstance = useAxios()
     const [error, setError] = useState<string | null>(null);
-    const baseUrl = "http://localhost:3000"
 
     useEffect(() => {
         if (!query) {
@@ -32,7 +33,7 @@ const SearchResults: FC = () => {
         setLoading(true);
         setResults(initialValues);
         setError(null);
-        axios.get(`${baseUrl}/items`, { params: { q: query } })
+        axiosInstance.get(`/items`, { params: { q: query } })
             .then(response => {
                 setResults(response.data);
                 setLoading(false);

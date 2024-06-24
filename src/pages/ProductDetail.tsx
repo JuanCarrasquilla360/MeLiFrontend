@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ProductDetails } from '../interfaces/details';
 import { useTranslation } from 'react-i18next';
 import ProductDetailComponent from '../components/ProductDetailComponent';
+import useAxios from '../hooks/useAxios';
 
 const initialValues: ProductDetails = {
     author: {
@@ -31,13 +32,13 @@ const ProductDetail: FC = () => {
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<ProductDetails>(initialValues);
     const [loading, setLoading] = useState(false);
+    const axiosInstance = useAxios()
     const [error, setError] = useState<string | null>(null);
-    const baseUrl = "http://localhost:3000"
     const { t } = useTranslation();
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${baseUrl}/items/${id}`)
+        axiosInstance.get(`items/${id}`)
             .then(response => {
                 setProduct(response.data);
                 setLoading(false);
