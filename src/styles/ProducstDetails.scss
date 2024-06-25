@@ -16,9 +16,10 @@
 
 .picture {
     width: 70%;
-
+    display: flex;
+    justify-content: center;
     img {
-        width: 80%;
+        max-width: 80%;
         height: 100%;
         object-fit: contain;
     }
