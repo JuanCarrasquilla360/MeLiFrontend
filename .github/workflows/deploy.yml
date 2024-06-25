@@ -24,21 +24,18 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Ensure dist directory exists
-        run: ls -l dist
+      - name: Verify dist directory
+        run: |
+          ls -l
+          ls -l dist
 
       - name: Rename dist to docs and deploy
         run: |
-          if [ -d "dist" ]; then
-            mv dist docs
-          else
-            echo "Directory 'dist' not found."
-            exit 1
-          fi
-        continue-on-error: true
+          mv dist docs || echo "Failed to rename 'dist' to 'docs'"
 
       - name: Deploy to GitHub Pages
+        if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./docs 
+          publish_dir: ./docs

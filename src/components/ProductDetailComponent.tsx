@@ -24,7 +24,10 @@ const ProductDetailComponent = ({ product }: { product: ProductDetails }) => {
                 </div>
                 <div className='description'>
                     <h1>{t("product_description")}</h1>
-                    <p>{product.item.description}</p>
+                    {product.item.description ? (
+                        <p>{product.item.description}</p>
+
+                    ) : (<p>{t("not_description")}</p>)}
                 </div>
             </div>
         </div>
