@@ -8,6 +8,12 @@ ul {
     height: auto;
 }
 
+@media (max-width: 768px) {
+    .ui-result {
+        width: 90%;
+    }
+}
+
 .breadcrums-container {
     margin-bottom: 10px;
 }

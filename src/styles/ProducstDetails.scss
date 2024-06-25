@@ -58,3 +58,24 @@
         color: gray;
     }
 }
+
+@media (max-width: 768px) {
+    .ui-details {
+        width: 90%;
+    }
+
+    .picture-price {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .picture {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .price-info {
+        width: 100%;
+    }
+}
