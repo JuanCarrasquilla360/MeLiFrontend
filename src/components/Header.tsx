@@ -7,7 +7,7 @@ const Header: FC = () => {
 
     const searchProducts = (query: string) => {
         if (!query) return
-        navigate(`/search?q=${query}`)
+        navigate(`/items?q=${query}`)
     };
     return (
         <div className='header'>

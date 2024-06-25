@@ -6,7 +6,7 @@ import { CiDeliveryTruck } from 'react-icons/ci'
 const SearchResult = ({ product }: {product: Item}) => {
     const navigate = useNavigate()
     return (
-        <li onClick={() => navigate(`/product/${product.id}`)}>
+        <li onClick={() => navigate(`/items/${product.id}`)}>
             <div className='picture'>
                 <img src={product.picture} alt="" />
             </div>
