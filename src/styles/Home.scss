@@ -1,4 +1,4 @@
-.error-container{
+.home-message {
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -9,12 +9,8 @@
     border-radius: 10px;
 }
 
-.not-found {
-    width: 30%;
-}
-
 @media (max-width: 768px) {
-    .error-container{
+    .home-message{
         width: 90%;
     }
 }
