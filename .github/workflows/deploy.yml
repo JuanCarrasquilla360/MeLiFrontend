@@ -1,41 +1,41 @@
-name: Deploy to GitHub Pages
+# name: Deploy to GitHub Pages
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Build application
-        run: npm run build
+#       - name: Build application
+#         run: npm run build
 
-      - name: Verify dist directory
-        run: |
-          ls -l
-          ls -l dist
+#       - name: Verify dist directory
+#         run: |
+#           ls -l
+#           ls -l dist
 
-      - name: Rename dist to docs and deploy
-        run: |
-          mv dist docs || echo "Failed to rename 'dist' to 'docs'"
+#       - name: Rename dist to docs and deploy
+#         run: |
+#           mv dist docs || echo "Failed to rename 'dist' to 'docs'"
 
-      - name: Deploy to GitHub Pages
-        if: success()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./docs
+#       - name: Deploy to GitHub Pages
+#         if: success()
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           github_token: ${{ secrets.GH_TOKEN }}
+#           publish_dir: ./docs
